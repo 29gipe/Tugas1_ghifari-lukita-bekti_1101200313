@@ -1,27 +1,10 @@
-# Impor modul yang diperlukan dari sklearn
 from sklearn import datasets
-from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
+import matplotlib.pyplot as plt
 
-# Memuat dataset iris
 iris = datasets.load_iris()
 
-# Membagi dataset menjadi data latih dan data uji
-X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.2, random_state=42)
-
-# Membuat model klasifikasi dengan k-Nearest Neighbors
-knn = KNeighborsClassifier(n_neighbors=3)
-
-# Melatih model dengan data latih
-knn.fit(X_train, y_train)
-
-# Menguji model dengan data uji
-y_pred = knn.predict(X_test)
-
-# Menampilkan hasil prediksi
-print("Hasil prediksi pada data uji:")
-print(y_pred)
-
-# Menampilkan skor akurasi model
-print("Skor akurasi model:")
-print(knn.score(X_test, y_test))
+plt.scatter(iris.data[:, 0], iris.data[:, 1], c=iris.target)
+plt.xlabel(iris.feature_names[0])
+plt.ylabel(iris.feature_names[1])
+plt.title('Scatter Plot Iris Dataset')
+plt.show()
